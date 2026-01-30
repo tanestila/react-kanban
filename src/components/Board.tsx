@@ -1,18 +1,20 @@
 import React from "react";
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { useKanbanStore } from "@/store/useKanbanStore";
 import { Column } from "./Column";
 
 export const Board: React.FC = () => {
   const { columnOrder, columns, moveCard, reorderCards } = useKanbanStore();
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId, type } = result;
 
-    // Если элемент не переместили
-    if (!destination) return;
+    // Если элемент не переместили (отменили перетаскивание)
+    if (!destination) {
+      return;
+    }
 
-    // Если элемент вернулся на место
+    // Если элемент вернулся на то же место
     if (
       source.droppableId === destination.droppableId &&
       source.index === destination.index

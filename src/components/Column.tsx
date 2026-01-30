@@ -48,7 +48,7 @@ export const Column: React.FC<ColumnProps> = ({ columnId, index }) => {
           {...provided.draggableProps}
           className="bg-gray-100 rounded-lg shadow min-w-[300px] max-w-[350px] flex flex-col"
         >
-          {/* Header */}
+          {/* Header с драг-хендлом */}
           <div
             {...provided.dragHandleProps}
             className="bg-white p-3 rounded-t-lg cursor-move flex items-center justify-between border-b"
@@ -99,7 +99,7 @@ export const Column: React.FC<ColumnProps> = ({ columnId, index }) => {
             </button>
           </div>
 
-          {/* Cards */}
+          {/* Cards - область для перетаскивания карточек */}
           <Droppable droppableId={columnId} type="card">
             {(provided, snapshot) => (
               <div
@@ -117,7 +117,7 @@ export const Column: React.FC<ColumnProps> = ({ columnId, index }) => {
             )}
           </Droppable>
 
-          {/* Add Card Form */}
+          {/* Форма добавления карточки */}
           <div className="p-3 bg-white rounded-b-lg border-t">
             <form onSubmit={handleAddCard} className="space-y-2">
               <input
